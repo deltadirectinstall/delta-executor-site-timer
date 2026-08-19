@@ -1,7 +1,77 @@
-BEST EXECUTOR
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delta Executor — Direct Install V1</title>
+<meta name="description" content="Trusted Direct install and Working Delta version">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <section class="card" aria-label="Delta Executor">
+    <div class="pill">BEST EXECUTOR</div>
 
-Delta Executor
-Trusted Direct install and Working Delta version
-V2.733.988
-Working
-Direct Install V1 Discord server
+    <div class="app-icon">
+      <img id="deltaIcon" alt="Delta Executor app icon"
+           onerror="this.hidden=true;document.querySelector('.delta-fallback').hidden=false">
+      <span class="delta-fallback" hidden>Δ</span>
+    </div>
+
+    <h1>Delta Executor</h1>
+    <p class="subtitle">Trusted Direct install and Working Delta version</p>
+
+    <div class="version">V2.733.988</div>
+    <div class="working"><i></i>Working</div>
+
+    <div class="buttons">
+      <a class="install" href="https://tinyurl.com/DeltadirectV6" id="install">
+        Direct Install V1
+      </a>
+
+      <a class="discord"
+         href="https://discord.gg/"
+         target="_blank"
+         rel="noopener">
+        Discord server
+      </a>
+    </div>
+
+    <div id="timer" class="timer" hidden aria-live="polite"></div>
+  </section>
+</div>
+
+<script>
+fetch("assets/delta-icon.b64")
+  .then(response => response.text())
+  .then(base64 => { document.getElementById("deltaIcon").src = "data:image/jpeg;base64," + base64.trim(); })
+  .catch(() => { document.getElementById("deltaIcon").hidden = true; document.querySelector(".delta-fallback").hidden = false; });
+
+const installButton = document.getElementById("install");
+const timer = document.getElementById("timer");
+const destination = "https://tinyurl.com/DeltadirectV6";
+
+installButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  let seconds = 5;
+  installButton.style.pointerEvents = "none";
+  installButton.setAttribute("aria-disabled", "true");
+  timer.hidden = false;
+  timer.textContent = `Redirecting in ${seconds}...`;
+
+  const countdown = setInterval(() => {
+    seconds--;
+
+    if (seconds > 0) {
+      timer.textContent = `Redirecting in ${seconds}...`;
+    } else {
+      clearInterval(countdown);
+      timer.textContent = "Redirecting...";
+      window.location.href = destination;
+    }
+  }, 1000);
+});
+</script>
+</body>
+</html>
