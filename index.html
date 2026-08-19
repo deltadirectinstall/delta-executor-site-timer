@@ -13,7 +13,7 @@
     <div class="pill">BEST EXECUTOR</div>
 
     <div class="app-icon">
-      <img id="deltaIcon" alt="Delta Executor app icon"
+      <img src="assets/delta-icon.png" alt="Delta Executor app icon"
            onerror="this.hidden=true;document.querySelector('.delta-fallback').hidden=false">
       <span class="delta-fallback" hidden>Δ</span>
     </div>
@@ -42,11 +42,6 @@
 </div>
 
 <script>
-fetch("assets/delta-icon.b64")
-  .then(response => response.text())
-  .then(base64 => { document.getElementById("deltaIcon").src = "data:image/jpeg;base64," + base64.trim(); })
-  .catch(() => { document.getElementById("deltaIcon").hidden = true; document.querySelector(".delta-fallback").hidden = false; });
-
 const installButton = document.getElementById("install");
 const timer = document.getElementById("timer");
 const destination = "https://tinyurl.com/DeltadirectV6";
