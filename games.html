@@ -35,91 +35,12 @@ h1{margin:0;font-size:clamp(28px,6vw,46px)}
 </header>
 
 <div class="games" id="games">
-
 <div class="game-card" data-name="subway surfers subway surfer">
 <div class="game-icon">🚇</div>
 <h2>Subway Surfers</h2>
 <p>Play Subway Surfers inside this page.</p>
 <button class="play" onclick="playGame('🚇 Subway Surfers','https://www.madkidgames.com/full/subway-surfers')">Play</button>
 </div>
-
-<div class="game-card" data-name="snake classic snake">
-<div class="game-icon">🐍</div>
-<h2>Classic Snake</h2>
-<p>Classic Snake from an embeddable HTML5 game library.</p>
-<button class="play" onclick="playGame('🐍 Classic Snake','https://gamezipper.com/snake/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="2048 galaxy 2048">
-<div class="game-icon">🔢</div>
-<h2>2048 Galaxy</h2>
-<p>Combine matching numbers and reach 2048.</p>
-<button class="play" onclick="playGame('🔢 2048 Galaxy','https://gamezipper.com/2048/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="tetris">
-<div class="game-icon">🧱</div>
-<h2>Tetris</h2>
-<p>Stack falling blocks and clear lines.</p>
-<button class="play" onclick="playGame('🧱 Tetris','https://gamezipper.com/tetris/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="pong">
-<div class="game-icon">🏓</div>
-<h2>Pong</h2>
-<p>Classic arcade paddle game.</p>
-<button class="play" onclick="playGame('🏓 Pong','https://gamezipper.com/pong/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="slope">
-<div class="game-icon">⚽</div>
-<h2>Slope</h2>
-<p>Roll down an endless 3D slope and dodge obstacles.</p>
-<button class="play" onclick="playGame('⚽ Slope','https://gamezipper.com/slope/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="brick breaker">
-<div class="game-icon">🎯</div>
-<h2>Brick Breaker</h2>
-<p>Break every brick with the bouncing ball.</p>
-<button class="play" onclick="playGame('🎯 Brick Breaker','https://gamezipper.com/brick-breaker/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="t rex dino runner dinosaur">
-<div class="game-icon">🦖</div>
-<h2>T-Rex Dino Runner</h2>
-<p>Jump over obstacles in a classic runner.</p>
-<button class="play" onclick="playGame('🦖 T-Rex Dino Runner','https://gamezipper.com/t-rex/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="flappy cyberpunk flappy">
-<div class="game-icon">🐦</div>
-<h2>Cyberpunk Flappy</h2>
-<p>Keep the bird airborne between obstacles.</p>
-<button class="play" onclick="playGame('🐦 Cyberpunk Flappy','https://gamezipper.com/flappy-wings/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="bubble shooter">
-<div class="game-icon">🫧</div>
-<h2>Bubble Shooter</h2>
-<p>Match three or more bubbles to clear them.</p>
-<button class="play" onclick="playGame('🫧 Bubble Shooter','https://gamezipper.com/bubble-shooter/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="minesweeper">
-<div class="game-icon">💣</div>
-<h2>Minesweeper</h2>
-<p>Use logic to reveal safe squares and avoid mines.</p>
-<button class="play" onclick="playGame('💣 Minesweeper','https://gamezipper.com/minesweeper/?utm_source=embed')">Play</button>
-</div>
-
-<div class="game-card" data-name="solitaire">
-<div class="game-icon">🃏</div>
-<h2>Solitaire</h2>
-<p>Classic Klondike solitaire with undo.</p>
-<button class="play" onclick="playGame('🃏 Solitaire','https://gamezipper.com/solitaire/?utm_source=embed')">Play</button>
-</div>
-
 </div>
 </div>
 
@@ -128,7 +49,7 @@ h1{margin:0;font-size:clamp(28px,6vw,46px)}
 <strong id="gameTitle">Game</strong>
 <button class="close" onclick="closeGame()">Close</button>
 </div>
-<iframe id="frame" title="Browser game" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
+<iframe id="frame" title="Subway Surfers" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
 </div>
 
 <script>
@@ -139,18 +60,15 @@ search.addEventListener('input',()=>{
   card.style.display=card.dataset.name.includes(q)?'block':'none';
  });
 });
-
 const screen=document.getElementById('gameScreen');
 const frame=document.getElementById('frame');
 const title=document.getElementById('gameTitle');
-
 function playGame(name,url){
  title.textContent=name;
  screen.style.display='block';
  document.body.style.overflow='hidden';
  frame.src=url;
 }
-
 function closeGame(){
  frame.src='about:blank';
  screen.style.display='none';
