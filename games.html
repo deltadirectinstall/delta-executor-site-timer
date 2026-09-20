@@ -2,25 +2,79 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nexbrowser V1.19</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Arial,Helvetica,sans-serif;background:#000;color:#fff}
-#gameScreen{width:100%;height:100%;background:#000}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#080b12;color:#fff}
+body{padding:20px}
+.wrap{max-width:1100px;margin:auto}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+h1{margin:0;font-size:clamp(28px,6vw,46px)}
+.search{width:min(100%,360px);padding:13px 16px;border:1px solid #2a3140;border-radius:14px;background:#111622;color:#fff;font-size:16px;outline:0}
+.games{display:grid;grid-template-columns:1fr;gap:16px}
+.game-card{background:#111622;border:1px solid #252d3b;border-radius:20px;padding:20px;box-shadow:0 12px 35px #0005}
+.game-icon{font-size:42px}
+.game-card h2{margin:12px 0 7px}
+.game-card p{color:#aeb7c7;line-height:1.45}
+.play{width:100%;border:0;border-radius:13px;padding:13px;background:#fff;color:#080b12;font-weight:800;font-size:16px;cursor:pointer}
+.play:active{transform:scale(.98)}
+#gameScreen{display:none;position:fixed;inset:0;background:#000;z-index:20}
 .gamebar{height:62px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;background:#0d111a;border-bottom:1px solid #252d3b}
 .gamebar strong{font-size:16px}
 .close{border:0;border-radius:10px;padding:9px 13px;background:#252d3b;color:#fff;font-weight:700}
 #frame{display:block;width:100%;height:calc(100dvh - 62px);border:0;background:#000}
+@media(max-width:600px){body{padding:14px}.game-card{padding:18px}}
 </style>
 </head>
 <body>
+<div class="wrap">
+<header>
+<h1>Nexbrowser V1.19</h1>
+<input id="search" class="search" type="search" placeholder="Search games..." autocomplete="off">
+</header>
+
+<div class="games" id="games">
+<div class="game-card" data-name="subway surfers subway surfer">
+<div class="game-icon">🚇</div>
+<h2>Subway Surfers</h2>
+<p>Play Subway Surfers inside this page.</p>
+<button class="play" onclick="startSubwaySurfers()">Play</button>
+</div>
+</div>
+</div>
+
 <div id="gameScreen">
 <div class="gamebar">
-<strong>Nexbrowser V1.19</strong>
-<button class="close" onclick="document.getElementById('frame').src='about:blank';history.back()">Close</button>
+<strong>🚇 Subway Surfers</strong>
+<button class="close" onclick="closeGame()">Close</button>
 </div>
-<iframe id="frame" title="Subway Surfers" src="https://www.madkidgames.com/full/subway-surfers" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
+<iframe id="frame" title="Subway Surfers" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
 </div>
+
+<script>
+const search=document.getElementById('search');
+search.addEventListener('input',()=>{
+ const q=search.value.toLowerCase().trim();
+ document.querySelectorAll('.game-card').forEach(card=>{
+  card.style.display=card.dataset.name.includes(q)?'block':'none';
+ });
+});
+
+const screen=document.getElementById('gameScreen');
+const frame=document.getElementById('frame');
+
+function startSubwaySurfers(){
+ screen.style.display='block';
+ document.body.style.overflow='hidden';
+ frame.src='https://www.madkidgames.com/full/subway-surfers';
+}
+
+function closeGame(){
+ frame.src='about:blank';
+ screen.style.display='none';
+ document.body.style.overflow='';
+}
+</script>
 </body>
 </html>
