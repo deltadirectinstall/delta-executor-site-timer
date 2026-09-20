@@ -3,189 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Browser Games</title>
+<title>Subway Surfers</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#080b12;color:#fff}
-body{padding:20px}
-.wrap{max-width:1100px;margin:auto}
-header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
-h1{margin:0;font-size:clamp(28px,6vw,46px)}
-.search{width:min(100%,360px);padding:13px 16px;border:1px solid #2a3140;border-radius:14px;background:#111622;color:#fff;font-size:16px;outline:0}
-.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.game-card{background:#111622;border:1px solid #252d3b;border-radius:20px;padding:20px;box-shadow:0 12px 35px #0005}
-.game-icon{font-size:42px}
-.game-card h2{margin:12px 0 7px}
-.game-card p{color:#aeb7c7;min-height:44px;line-height:1.45}
-.play{width:100%;border:0;border-radius:13px;padding:13px;background:#fff;color:#080b12;font-weight:800;font-size:16px;cursor:pointer}
-.play:active{transform:scale(.98)}
-#gameScreen{display:none;position:fixed;inset:0;background:#000;z-index:20}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Arial,Helvetica,sans-serif;background:#000;color:#fff}
+#gameScreen{width:100%;height:100%;background:#000}
 .gamebar{height:62px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;background:#0d111a;border-bottom:1px solid #252d3b}
 .gamebar strong{font-size:16px}
 .close{border:0;border-radius:10px;padding:9px 13px;background:#252d3b;color:#fff;font-weight:700}
-#frame{display:none;width:100%;height:calc(100dvh - 62px);border:0;background:#000}
-@media(max-width:600px){body{padding:14px}.games{grid-template-columns:1fr}.game-card{padding:18px}}
+#frame{display:block;width:100%;height:calc(100dvh - 62px);border:0;background:#000}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-<h1>Browser Games</h1>
-<input id="search" class="search" type="search" placeholder="Search games..." autocomplete="off">
-</header>
-
-<div class="games" id="games">
-<div class="game-card" data-name="subway surfers subway surfer">
-<div class="game-icon">🚇</div>
-<h2>Subway Surfers</h2>
-<p>Play Subway Surfers inside this page.</p>
-<button class="play" onclick="startSubwaySurfers()">Play</button>
-</div>
-
-<div class="game-card" data-name="neon runner runner">
-<div class="game-icon">🏃</div>
-<h2>Neon Runner</h2>
-<p>A simple endless runner built directly into this page.</p>
-<button class="play" onclick="startNeonRunner()">Play</button>
-</div>
-
-<div class="game-card" data-name="snake">
-<div class="game-icon">🐍</div>
-<h2>Snake</h2>
-<p>Classic Snake with touch-friendly controls.</p>
-<button class="play" onclick="startSnake()">Play</button>
-</div>
-
-<div class="game-card" data-name="breakout">
-<div class="game-icon">🧱</div>
-<h2>Breakout</h2>
-<p>Break the blocks with the paddle.</p>
-<button class="play" onclick="startBreakout()">Play</button>
-</div>
-</div>
-</div>
-
 <div id="gameScreen">
 <div class="gamebar">
-<strong id="gameTitle">Game</strong>
-<button class="close" onclick="closeGame()">Close</button>
+<strong>🚇 Subway Surfers</strong>
+<button class="close" onclick="document.getElementById('frame').src='about:blank';history.back()">Close</button>
 </div>
-<iframe id="frame" title="Game" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
-<canvas id="canvas" style="display:none"></canvas>
+<iframe id="frame" title="Subway Surfers" src="https://www.madkidgames.com/full/subway-surfers" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
 </div>
-
-<script>
-const search=document.getElementById('search');
-search.addEventListener('input',()=>{
- const q=search.value.toLowerCase().trim();
- document.querySelectorAll('.game-card').forEach(card=>{
-  card.style.display=card.dataset.name.includes(q)?'block':'none';
- });
-});
-
-const screen=document.getElementById('gameScreen');
-const title=document.getElementById('gameTitle');
-const frame=document.getElementById('frame');
-const canvas=document.getElementById('canvas');
-let animationId=null;
-
-function openGame(name){
- title.textContent=name;
- screen.style.display='block';
- document.body.style.overflow='hidden';
-}
-function closeGame(){
- if(animationId) cancelAnimationFrame(animationId);
- animationId=null;
- frame.src='about:blank';
- frame.style.display='none';
- canvas.style.display='none';
- screen.style.display='none';
- document.body.style.overflow='';
-}
-
-function startSubwaySurfers(){
- openGame('🚇 Subway Surfers');
- frame.src='https://www.madkidgames.com/full/subway-surfers';
- frame.style.display='block';
-}
-
-function setupCanvas(){
- canvas.style.display='block';
- canvas.width=Math.max(320,window.innerWidth);
- canvas.height=Math.max(420,window.innerHeight-62);
- return canvas.getContext('2d');
-}
-
-function startNeonRunner(){
- openGame('🏃 Neon Runner');
- const c=setupCanvas(),w=canvas.width,h=canvas.height;
- let x=w*.25,y=h*.72,vy=0,ground=h*.78,obs=[];
- function loop(){
-  c.clearRect(0,0,w,h);
-  c.fillStyle='#090d16';c.fillRect(0,0,w,h);
-  c.fillStyle='#fff';c.fillRect(0,ground,w,4);
-  vy+=.8;y+=vy;
-  if(y>ground-34){y=ground-34;vy=0}
-  if(Math.random()<.025)obs.push({x:w+20,y:ground-34,w:24,h:34});
-  obs.forEach(o=>o.x-=6);
-  obs=obs.filter(o=>o.x>-50);
-  c.fillStyle='#fff';c.fillRect(x,y,30,34);
-  c.fillStyle='#ff4d7d';obs.forEach(o=>c.fillRect(o.x,o.y,o.w,o.h));
-  c.fillStyle='#aeb7c7';c.font='16px Arial';c.fillText('Tap / Space to jump',18,28);
-  for(const o of obs) if(x<o.x+o.w&&x+30>o.x&&y<o.y+o.h&&y+34>o.y){closeGame();return}
-  animationId=requestAnimationFrame(loop);
- }
- const jump=()=>{if(y>=ground-35)vy=-14};
- canvas.onclick=jump;
- window.onkeydown=e=>{if(e.code==='Space')jump()};
- loop();
-}
-
-function startSnake(){
- openGame('🐍 Snake');
- const c=setupCanvas(),w=canvas.width,h=canvas.height,size=20;
- let snake=[{x:Math.floor(w/2/size)*size,y:Math.floor(h/2/size)*size}],dir={x:1,y:0};
- let food={x:Math.floor(Math.random()*Math.floor(w/size))*size,y:Math.floor(Math.random()*Math.floor(h/size))*size};
- function move(){
-  const head={x:snake[0].x+dir.x*size,y:snake[0].y+dir.y*size};
-  if(head.x<0||head.y<0||head.x>=w||head.y>=h||snake.some(p=>p.x===head.x&&p.y===head.y)){closeGame();return}
-  snake.unshift(head);
-  if(head.x===food.x&&head.y===food.y) food={x:Math.floor(Math.random()*Math.floor(w/size))*size,y:Math.floor(Math.random()*Math.floor(h/size))*size}; else snake.pop();
-  c.fillStyle='#090d16';c.fillRect(0,0,w,h);
-  c.fillStyle='#fff';snake.forEach(p=>c.fillRect(p.x,p.y,size-2,size-2));
-  c.fillStyle='#ff4d7d';c.fillRect(food.x,food.y,size-2,size-2);
- }
- const keys={ArrowUp:{x:0,y:-1},ArrowDown:{x:0,y:1},ArrowLeft:{x:-1,y:0},ArrowRight:{x:1,y:0}};
- window.onkeydown=e=>{if(keys[e.key]){const n=keys[e.key];if(n.x!==-dir.x||n.y!==-dir.y)dir=n}};
- const id=setInterval(move,110);
- animationId=id;
-}
-
-function startBreakout(){
- openGame('🧱 Breakout');
- const c=setupCanvas(),w=canvas.width,h=canvas.height;
- let x=w/2,y=h-70,dx=4,dy=-4,pw=100,px=w/2-pw/2;
- const rows=5,cols=8,bw=Math.floor((w-30)/cols)-5,bh=22;
- let bricks=[];
- for(let r=0;r<rows;r++)for(let col=0;col<cols;col++)bricks.push({x:15+col*(bw+5),y:40+r*(bh+7),alive:true});
- function loop(){
-  c.fillStyle='#090d16';c.fillRect(0,0,w,h);
-  bricks.forEach(b=>{if(b.alive){c.fillStyle='#fff';c.fillRect(b.x,b.y,bw,bh)}});
-  c.fillStyle='#fff';c.fillRect(px,h-35,pw,12);c.fillRect(x-7,y-7,14,14);
-  x+=dx;y+=dy;
-  if(x<7||x>w-7)dx=-dx;
-  if(y<7)dy=-dy;
-  if(y>h-50&&x>px&&x<px+pw)dy=-Math.abs(dy);
-  for(const b of bricks)if(b.alive&&x>b.x&&x<b.x+bw&&y>b.y&&y<b.y+bh){b.alive=false;dy=-dy;break}
-  if(y>h+20){closeGame();return}
-  animationId=requestAnimationFrame(loop);
- }
- const move=e=>{const r=canvas.getBoundingClientRect();px=Math.max(0,Math.min(w-pw,e.clientX-r.left-pw/2))};
- canvas.addEventListener('pointermove',move);
- window.onkeydown=e=>{if(e.key==='ArrowLeft')px=Math.max(0,px-30);if(e.key==='ArrowRight')px=Math.min(w-pw,px+30)};
- loop();
-}
-</script>
 </body>
 </html>
