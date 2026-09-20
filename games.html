@@ -12,11 +12,11 @@ body{padding:20px}
 header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
 h1{margin:0;font-size:clamp(28px,6vw,46px)}
 .search{width:min(100%,360px);padding:13px 16px;border:1px solid #2a3140;border-radius:14px;background:#111622;color:#fff;font-size:16px;outline:0}
-.games{display:grid;grid-template-columns:1fr;gap:16px}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .game-card{background:#111622;border:1px solid #252d3b;border-radius:20px;padding:20px;box-shadow:0 12px 35px #0005}
 .game-icon{font-size:42px}
 .game-card h2{margin:12px 0 7px}
-.game-card p{color:#aeb7c7;line-height:1.45}
+.game-card p{color:#aeb7c7;min-height:44px;line-height:1.45}
 .play{width:100%;border:0;border-radius:13px;padding:13px;background:#fff;color:#080b12;font-weight:800;font-size:16px;cursor:pointer}
 .play:active{transform:scale(.98)}
 #gameScreen{display:none;position:fixed;inset:0;background:#000;z-index:20}
@@ -24,7 +24,7 @@ h1{margin:0;font-size:clamp(28px,6vw,46px)}
 .gamebar strong{font-size:16px}
 .close{border:0;border-radius:10px;padding:9px 13px;background:#252d3b;color:#fff;font-weight:700}
 #frame{display:block;width:100%;height:calc(100dvh - 62px);border:0;background:#000}
-@media(max-width:600px){body{padding:14px}.game-card{padding:18px}}
+@media(max-width:600px){body{padding:14px}.games{grid-template-columns:1fr}.game-card{padding:18px}}
 </style>
 </head>
 <body>
@@ -35,21 +35,100 @@ h1{margin:0;font-size:clamp(28px,6vw,46px)}
 </header>
 
 <div class="games" id="games">
+
 <div class="game-card" data-name="subway surfers subway surfer">
 <div class="game-icon">🚇</div>
 <h2>Subway Surfers</h2>
 <p>Play Subway Surfers inside this page.</p>
-<button class="play" onclick="startSubwaySurfers()">Play</button>
+<button class="play" onclick="playGame('🚇 Subway Surfers','https://www.madkidgames.com/full/subway-surfers')">Play</button>
 </div>
+
+<div class="game-card" data-name="snake classic snake">
+<div class="game-icon">🐍</div>
+<h2>Classic Snake</h2>
+<p>Classic Snake from an embeddable HTML5 game library.</p>
+<button class="play" onclick="playGame('🐍 Classic Snake','https://gamezipper.com/snake/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="2048 galaxy 2048">
+<div class="game-icon">🔢</div>
+<h2>2048 Galaxy</h2>
+<p>Combine matching numbers and reach 2048.</p>
+<button class="play" onclick="playGame('🔢 2048 Galaxy','https://gamezipper.com/2048/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="tetris">
+<div class="game-icon">🧱</div>
+<h2>Tetris</h2>
+<p>Stack falling blocks and clear lines.</p>
+<button class="play" onclick="playGame('🧱 Tetris','https://gamezipper.com/tetris/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="pong">
+<div class="game-icon">🏓</div>
+<h2>Pong</h2>
+<p>Classic arcade paddle game.</p>
+<button class="play" onclick="playGame('🏓 Pong','https://gamezipper.com/pong/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="slope">
+<div class="game-icon">⚽</div>
+<h2>Slope</h2>
+<p>Roll down an endless 3D slope and dodge obstacles.</p>
+<button class="play" onclick="playGame('⚽ Slope','https://gamezipper.com/slope/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="brick breaker">
+<div class="game-icon">🎯</div>
+<h2>Brick Breaker</h2>
+<p>Break every brick with the bouncing ball.</p>
+<button class="play" onclick="playGame('🎯 Brick Breaker','https://gamezipper.com/brick-breaker/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="t rex dino runner dinosaur">
+<div class="game-icon">🦖</div>
+<h2>T-Rex Dino Runner</h2>
+<p>Jump over obstacles in a classic runner.</p>
+<button class="play" onclick="playGame('🦖 T-Rex Dino Runner','https://gamezipper.com/t-rex/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="flappy cyberpunk flappy">
+<div class="game-icon">🐦</div>
+<h2>Cyberpunk Flappy</h2>
+<p>Keep the bird airborne between obstacles.</p>
+<button class="play" onclick="playGame('🐦 Cyberpunk Flappy','https://gamezipper.com/flappy-wings/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="bubble shooter">
+<div class="game-icon">🫧</div>
+<h2>Bubble Shooter</h2>
+<p>Match three or more bubbles to clear them.</p>
+<button class="play" onclick="playGame('🫧 Bubble Shooter','https://gamezipper.com/bubble-shooter/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="minesweeper">
+<div class="game-icon">💣</div>
+<h2>Minesweeper</h2>
+<p>Use logic to reveal safe squares and avoid mines.</p>
+<button class="play" onclick="playGame('💣 Minesweeper','https://gamezipper.com/minesweeper/?utm_source=embed')">Play</button>
+</div>
+
+<div class="game-card" data-name="solitaire">
+<div class="game-icon">🃏</div>
+<h2>Solitaire</h2>
+<p>Classic Klondike solitaire with undo.</p>
+<button class="play" onclick="playGame('🃏 Solitaire','https://gamezipper.com/solitaire/?utm_source=embed')">Play</button>
+</div>
+
 </div>
 </div>
 
 <div id="gameScreen">
 <div class="gamebar">
-<strong>🚇 Subway Surfers</strong>
+<strong id="gameTitle">Game</strong>
 <button class="close" onclick="closeGame()">Close</button>
 </div>
-<iframe id="frame" title="Subway Surfers" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
+<iframe id="frame" title="Browser game" allow="fullscreen; autoplay; gamepad" allowfullscreen scrolling="no"></iframe>
 </div>
 
 <script>
@@ -63,11 +142,13 @@ search.addEventListener('input',()=>{
 
 const screen=document.getElementById('gameScreen');
 const frame=document.getElementById('frame');
+const title=document.getElementById('gameTitle');
 
-function startSubwaySurfers(){
+function playGame(name,url){
+ title.textContent=name;
  screen.style.display='block';
  document.body.style.overflow='hidden';
- frame.src='https://www.madkidgames.com/full/subway-surfers';
+ frame.src=url;
 }
 
 function closeGame(){
