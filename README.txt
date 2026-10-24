@@ -6,4 +6,5 @@ Install button behavior:
 - Redirects to https://tinyurl.com/DeltadirectV6
 
 
-https://bull33.org/xayi/https%3A%2F%2Fwww.tiktok.com%2F
+
+https://serumos.best/study/uv/u556a02a/a305tmz5/https%3A%2F%2Fwww.tiktok.com%2F?%24rfp=origin&%24io=https%3A%2F%2Fduckduckgo.com
