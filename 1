@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mantle</title>
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #090909;
+  --grid: rgba(255,255,255,.055);
+  --muted: #a0a0a6;
+  --border: #2b2c30;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: #f7f7f8;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+}
+
+.brand {
+  position: absolute;
+  top: 10px;
+  left: 61%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  white-space: nowrap;
+}
+
+.mark {
+  width: 57px;
+  height: 43px;
+  flex: 0 0 auto;
+}
+
+.wordmark {
+  font-size: clamp(38px, 5.3vw, 54px);
+  line-height: 1;
+  letter-spacing: -2.4px;
+  font-weight: 800;
+}
+
+.disclaimer {
+  position: absolute;
+  top: 129px;
+  left: 64%;
+  color: #99999f;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.apps {
+  position: absolute;
+  top: 195px;
+  left: 35.4%;
+  width: 460px;
+  max-width: calc(100vw - 32px);
+  display: grid;
+  gap: 12px;
+}
+
+.app-card {
+  cursor: pointer;
+  min-height: 94px;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(17,18,20,.94);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.14);
+}
+
+.app-card:hover {
+  border-color: #22d3e6;
+  background: #151719;
+}
+
+.app-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #15545e;
+  border-radius: 9px;
+  background: #0b2025;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.app-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.app-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.app-description {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .brand { left: 8%; }
+  .disclaimer {
+    left: 8%;
+    top: 105px;
+  }
+  .apps {
+    left: 16px;
+    top: 160px;
+    width: calc(100vw - 32px);
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <header class="brand" aria-label="Mantle">
+    <svg class="mark" viewBox="0 0 58 44" aria-hidden="true">
+      <defs>
+        <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#79e5ff"/>
+          <stop offset="1" stop-color="#5267ff"/>
+        </linearGradient>
+        <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#c78aff"/>
+          <stop offset="1" stop-color="#f05bd7"/>
+        </linearGradient>
+        <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#a9f6b4"/>
+          <stop offset="1" stop-color="#4ebfa0"/>
+        </linearGradient>
+      </defs>
+      <path d="M1 36 L14 12 Q16 8 19 12 L31 36 Q33 41 27 41 L5 41 Q-1 41 1 36Z" fill="url(#green)"/>
+      <path d="M15 36 L28 3 Q30 -1 33 4 L49 36 Q51 41 46 41 L19 41 Q13 41 15 36Z" fill="url(#blue)"/>
+      <path d="M34 36 L45 16 Q47 12 50 17 L57 36 Q59 41 54 41 L38 41 Q31 41 34 36Z" fill="url(#purple)"/>
+    </svg>
+    <div class="wordmark">MANTLE</div>
+  </header>
+
+  <div class="disclaimer">If anyone asks, this is a research project.</div>
+
+  <section class="apps" aria-label="Apps">
+
+    <!-- serumOS -->
+    <article class="app-card" role="link" tabindex="0"
+      onclick="openSite('https://serumos.best/')"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSite('https://serumos.best/')}">
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#22d3e6" stroke-width="1.7" stroke-linejoin="round">
+          <path d="M12 2.8 20 7.2 12 11.7 4 7.2 12 2.8Z"/>
+          <path d="M4 7.2v9.3l8 4.5 8-4.5V7.2"/>
+          <path d="M12 11.7V21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="app-name">serumOS</div>
+        <div class="app-description">Play Minecraft in your browser</div>
+      </div>
+    </article>
+
+    <!-- staticOS -->
+    <article class="app-card" role="link" tabindex="0"
+      onclick="openSite('https://staticos.surge.sh/')"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSite('https://staticos.surge.sh/')}">
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#22d3e6" stroke-width="1.7" stroke-linejoin="round">
+          <path d="M4 5.5h16v13H4z"/>
+          <path d="M4 9h16M8 5.5v3.5M12 5.5v3.5"/>
+          <path d="m8 13 2.5 2.5L16 11"/>
+        </svg>
+      </div>
+      <div>
+        <div class="app-name">staticOS (Beta)</div>
+        <div class="app-description">Open staticOS in your browser</div>
+      </div>
+    </article>
+
+    <!-- serumOS 2 -->
+    <article class="app-card" role="link" tabindex="0"
+      onclick="openSite('https://s3.amazonaws.com/mathnook/index.html')"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSite('https://s3.amazonaws.com/mathnook/index.html')}">
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#22d3e6" stroke-width="1.7" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="3"/>
+          <path d="M8 9h8M8 12h8M8 15h5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="app-name">*serumos 2</div>
+        <div class="app-description">Open serumOS 2 in your browser</div>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<script>
+function openSite(url) {
+  // Open a separate popup window with an about:blank address.
+  const popup = window.open(
+    "about:blank",
+    "_blank",
+    "popup=yes,width=1100,height=750,resizable=yes,scrollbars=yes"
+  );
+
+  if (!popup) {
+    alert("Popup blocked. Allow pop-ups for this page and try again.");
+    return;
+  }
+
+  popup.document.open();
+  popup.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title></title>
+<style>
+html,body,iframe {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  border:0;
+  overflow:hidden;
+  background:#fff;
+}
+</style>
+</head>
+<body>
+<iframe src="${url}" title="Website"></iframe>
+</body>
+</html>`);
+  popup.document.close();
+}
+</script>
+
+</body>
+</html>
