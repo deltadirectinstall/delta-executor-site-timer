@@ -7,4 +7,4 @@ Install button behavior:
 
 
 
-https://serumos.best/study/uv/u556a02a/a305tmz5/https%3A%2F%2Fwww.tiktok.com%2F?%24rfp=origin&%24io=https%3A%2F%2Fduckduckgo.com
+https://www.mediafire.com/file/v2gz6b3h71og71p/SerumLauncher-galaxy-OS.html/file
