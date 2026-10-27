@@ -7,4 +7,5 @@ Install button behavior:
 
 
 
-https://www.mediafire.com/file/v2gz6b3h71og71p/SerumLauncher-galaxy-OS.html/file
+
+https://www.mediafire.com/file/8grer915ou0njz5/SerumLauncher-lumina-v1.html/file
